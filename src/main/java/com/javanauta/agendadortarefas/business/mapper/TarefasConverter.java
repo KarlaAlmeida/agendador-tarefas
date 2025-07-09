@@ -11,8 +11,8 @@ import java.util.List;
 public interface TarefasConverter {
 
     @Mapping(source = "id", target = "id")
-    //@Mapping(source = "", target = "")
-    //@Mapping(source = "", target = "")
+    @Mapping(source = "dataEvento", target = "dataEvento")
+    @Mapping(source = "dataCriacao", target = "dataCriacao")
     TarefasEntity paraTarefasEntity(TarefasDTO tarefasDTO);
     TarefasDTO paraTarefasDTO(TarefasEntity tarefasEntity);
 
