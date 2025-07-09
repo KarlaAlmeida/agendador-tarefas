@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface TarefasRepository extends MongoRepository<TarefasEntity, String> {
 
-    List<TarefasEntity> findbyDataEventoBetween(LocalDateTime dataInicial, LocalDateTime dataFinal);
+    //List<TarefasEntity> findbyDataEventoBetween(LocalDateTime dataInicial, LocalDateTime dataFinal);
 
     List<TarefasEntity> findByEmailUsuario(String email);
 }
