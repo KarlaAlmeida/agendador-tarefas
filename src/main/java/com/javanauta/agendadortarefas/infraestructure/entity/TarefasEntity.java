@@ -3,7 +3,6 @@ package com.javanauta.agendadortarefas.infraestructure.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.javanauta.agendadortarefas.infraestructure.enums.StatusNotificacaoEnum;
 import lombok.*;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
