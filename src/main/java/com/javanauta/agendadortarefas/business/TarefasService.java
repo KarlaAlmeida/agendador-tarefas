@@ -1,6 +1,7 @@
 package com.javanauta.agendadortarefas.business;
 
 import com.javanauta.agendadortarefas.business.dto.TarefasDTO;
+import com.javanauta.agendadortarefas.business.mapper.TarefaUpdateConverter;
 import com.javanauta.agendadortarefas.business.mapper.TarefasConverter;
 import com.javanauta.agendadortarefas.infraestructure.entity.TarefasEntity;
 import com.javanauta.agendadortarefas.infraestructure.enums.StatusNotificacaoEnum;
@@ -20,6 +21,7 @@ public class TarefasService {
     private final TarefasRepository tarefasRepository;
     private final TarefasConverter tarefasConverter;
     private final JwtUtil jwtUtil;
+    private final TarefaUpdateConverter tarefaUpdateConverter;
 
     public TarefasDTO gravarTarefa(String token, TarefasDTO tarefasDTO){
         String email = jwtUtil.extrairEmailToken(token.substring(7));
@@ -46,6 +48,28 @@ public class TarefasService {
             tarefasRepository.deleteById(id);
         } catch (ResourceNotFoundException e){
             throw new ResourceNotFoundException("Id inexistente" + id, e.getCause());
+        }
+    }
+
+    public TarefasDTO alteraStatus(StatusNotificacaoEnum status, String id){
+        try {
+            TarefasEntity entity = tarefasRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada " + id));
+            entity.setStatusNotificacaoEnum(status);
+            return tarefasConverter.paraTarefasDTO(tarefasRepository.save(entity));
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Erro ao alterar tarefa ", e.getCause());
+        }
+    }
+
+    public TarefasDTO updateTarefas(TarefasDTO tarefasDTO, String id){
+        try {
+            TarefasEntity entity = tarefasRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada " + id));
+            tarefaUpdateConverter.updateTarefas(tarefasDTO, entity);
+            return tarefasConverter.paraTarefasDTO(tarefasRepository.save(entity));
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException("Erro ao alte" + id, e.getCause());
         }
     }
 
