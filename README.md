@@ -9,6 +9,14 @@ Gerencia as tarefas cadastradas por usuários, com autenticação e integração
 - Relacionamento com usuários autenticados via JWT
 - Comunicação com API de usuários via FeignClient
 
+ ## 📍 Endpoints da Aplicação
+- **POST /tarefas**: Cadastra uma nova tarefa.
+- **GET /tarefas/eventos**: Busca lista de tarefas por período.
+- **GET /tarefas**: Busca tarefas por email.
+- **DELETE /tarefas**: Deleta tarefa por ID.
+- **PATCH /tarefas**: Altera status de tarefa por ID.
+- **PUT /tarefas**: Atualiza tarefas por ID.
+
 ## 🔐 Segurança
 
 - Spring Security com validação de token JWT
